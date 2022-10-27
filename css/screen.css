@@ -7,14 +7,14 @@
 \*------------------------------------*/
 
 :root {
-  /* Global colors */
-  --global-color-back: #6dbedf;
-  --global-color-front: white;
+	/* Global colors */
+	--global-color-back: #6dbedf;
+	--global-color-front: white;
 
-  /* global page settings */
-  --global-html-color: var(--global-color-front);
-  --global-html-backgroundColor: var(--global-color-back);
-  --global-selection-backgroundColor: var(--global-color-front);
+	/* global page settings */
+	--global-html-color: var(--global-color-front);
+	--global-html-backgroundColor: var(--global-color-back);
+	--global-selection-backgroundColor: var(--global-color-front);
 }
 
 /*------------------------------------*\
@@ -28,21 +28,27 @@
 */
 
 html {
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: sans-serif;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-size: 16px;
+	line-height: 1.5;
+	font-family: sans-serif;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--global-color-back);
+	color: var(--global-color-front);
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
 }
 
 /*
@@ -53,9 +59,9 @@ body {
 */
 
 ::selection {
-  background: var(--global-selection-backgroundColor);
-  color: white;
-  text-shadow: none;
+	background: var(--global-selection-backgroundColor);
+	color: white;
+	text-shadow: none;
 }
 
 /*------------------------------------*\
@@ -73,9 +79,9 @@ body {
 */
 
 .o-list-reset {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 /*
@@ -85,26 +91,26 @@ body {
 */
 
 .o-button-reset {
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-  background: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	overflow: visible;
+	background: transparent;
 
-  /* inherit font & color from ancestor */
-  color: inherit;
-  font: inherit;
+	/* inherit font & color from ancestor */
+	color: inherit;
+	font: inherit;
 
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
+	/* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+	line-height: normal;
 
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
+	/* Corrects font smoothing for webkit */
+	-webkit-font-smoothing: inherit;
+	-moz-osx-font-smoothing: inherit;
 
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
+	/* Corrects inability to style clickable `input` types in iOS */
+	-webkit-appearance: none;
 }
 
 /*
@@ -114,14 +120,14 @@ body {
 */
 
 .o-hide-accessible {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }
 
 /*------------------------------------*\
@@ -133,16 +139,117 @@ body {
 */
 
 .c-robot {
+	fill: var(--global-color-front);
+	max-width: 300px;
+	--c-robot-animation-duration: 0.75s;
+	--c-robot-animation-timing-function: ease-in-out;
+	--c-robot-animation-iteration-count: infinite;
+	--c-robot-animation-direction: alternate;
 }
 
 .c-robot__shadow {
+	fill: black;
+	opacity: 0.1;
+	--c-shadow-animation-duration: 0.75s;
+	--c-shadow-animation-timing-function: ease-in-out;
+	--c-shadow-animation-iteration-count: infinite;
+	--c-shadow-animation-direction: alternate;
 }
 
+@keyframes shadowPulse {
+	100% {
+		transform: scale (0.75);
+	}
+}
+
+@keyframes robotHover {
+	0% {
+		transform: translateY(2.5%);
+	}
+	100% {
+		transform: translateY(-2.5%);
+	}
+}
 
 /*
     Component: Controls
 */
+.c-robot--css-anim {
+	width: 200px;
+	height: 200px;
+}
+.c-all {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+.c-controls {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	margin: 2rem;
+}
+.c-controls__button {
+	margin: 1rem;
+}
+.c-controls__list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+}
 
+/* .c-robot--css-anim #Shadow {
+	transform-origin: 50% 100%;
+	animation-name: shadowPulse;
+	animation-duration: var(--c-robot-animation-duration);
+	animation-timing-function: var(--c-robot-animation-timing-function);
+	animation-iteration-count: var (--c-robot-animation-iteration-count);
+	animation-direction: var(--c-robot-animation-direction);
+}
+.c-robot--css-anim #Robot {
+	fill: white;
+	animation-duration: var(--c-robot-animation-duration);
+	animation-name: robotHover;
+	animation-timing-function: var(--c-robot-animation-timing-function);
+	animation-iteration-count: var(--c-robot-animation-iteration-count);
+	animation-direction: var(--c-robot-animation-direction);
+} */
+
+.c-controls__button--pause {
+	display: absolute;
+	right: 12px;
+	bottom: 12px;
+}
+
+.c-play-icon {
+	display: block;
+	width: 24px;
+	height: 24px;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.c-controls__button--pause {
+	margin: 5px;
+}
+.c-controls__button--pause .c-play-icon--play {
+	display: block;
+}
+
+.c-controls__button--pause .c-play-icon--pause {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+.hide {
+	display: none;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
@@ -159,61 +266,61 @@ body {
 */
 
 @media print {
-  *,
-  *:before,
-  *:after {
-    background: transparent !important;
-    color: #000 !important;
-    /* Black prints faster:
+	*,
+	*:before,
+	*:after {
+		background: transparent !important;
+		color: #000 !important;
+		/* Black prints faster:
         http://www.sanbeiji.com/archives/953 */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-  a[href]:after {
-    content: ' (' attr(href) ')';
-  }
-  abbr[title]:after {
-    content: ' (' attr(title) ')';
-  }
-  /*
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+	a[href]:after {
+		content: ' (' attr(href) ')';
+	}
+	abbr[title]:after {
+		content: ' (' attr(title) ')';
+	}
+	/*
     * Don't show links that are fragment identifiers,
     * or use the `javascript:` pseudo protocol
     */
-  a[href^='#']:after,
-  a[href^='javascript:']:after {
-    content: '';
-  }
-  pre {
-    white-space: pre-wrap !important;
-  }
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-  /*
+	a[href^='#']:after,
+	a[href^='javascript:']:after {
+		content: '';
+	}
+	pre {
+		white-space: pre-wrap !important;
+	}
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	/*
     * Printing Tables:
     * http://css-discuss.incutio.com/wiki/Printing_Tables
     */
-  thead {
-    display: table-header-group;
-  }
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+	thead {
+		display: table-header-group;
+	}
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
 }
